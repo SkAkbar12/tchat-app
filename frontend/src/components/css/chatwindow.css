@@ -1,0 +1,152 @@
+/* CHAT WINDOW */
+.chat-window {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #e5ddd5;
+}
+
+/* HEADER */
+.chat-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    background: #202c33;
+    color: white;
+    font-weight: bold;
+}
+
+.header-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* MESSAGES AREA (renamed to .message-list in your component) */
+.message-list {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* MESSAGE */
+.message {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 10px;
+    max-width: 70%;
+}
+
+/* YOUR MESSAGE RIGHT */
+.message.own {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+/* OTHER USER LEFT */
+.message.other {
+    align-self: flex-start;
+}
+
+/* AVATAR */
+.message-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin: 0 8px;
+    object-fit: cover;
+}
+
+/* MESSAGE BOX */
+.message-content {
+    padding: 10px 12px;
+    border-radius: 10px;
+    max-width: 100%;
+}
+
+/* OWN MESSAGE */
+.message.own .message-content {
+    background: #0b93f6;
+    color: white;
+}
+
+/* OTHER MESSAGE */
+.message.other .message-content {
+    background: white;
+    color: black;
+}
+
+/* TEXT */
+.message-text {
+    font-size: 14px;
+}
+
+/* SENDER */
+.message-sender {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+/* TIME */
+.message-time {
+    font-size: 10px;
+    text-align: right;
+    opacity: 0.7;
+}
+
+/* INPUT */
+.message-input-box {
+    display: flex;
+    padding: 12px;
+    background: white;
+    border-top: 1px solid #ddd;
+}
+
+.message-input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.send-btn {
+    margin-left: 10px;
+    padding: 10px 16px;
+    background: #00a884;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* EMPTY CHAT */
+.no-chat {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: #777;
+}
+
+/* ERROR MESSAGE */
+.error {
+    color: red;
+    text-align: center;
+    margin: 10px 0;
+}
+
+/* SCROLLBAR */
+.message-list::-webkit-scrollbar {
+    width: 5px;
+}
+
+.message-list::-webkit-scrollbar-thumb {
+    background: #bbb;
+    border-radius: 10px;
+}
