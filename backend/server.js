@@ -10,17 +10,31 @@ import authRoutes from './router/authRoutes.js';
 import chatRoutes from './router/chatRoutes.js';
 import messageRoutes from './router/messageRoutes.js';
 import { errorHandler } from './utils/errorHandler.js';
+import path from 'path';
 
+import { fileURLToPath } from 'url';
+
+// Fix __dirname in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Serve frontend build
+const frontendPath = path.join(__dirname, '../frontend/dist');
 dotenv.config();
 
 const app = express();
 connectDB();
+app.use(express.static(frontendPath));
 
+// Handle React routing (important)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(frontendPath, 'index.html'));
+});
 const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 100 });
 app.use('/api/', limiter);
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({ origin: ['http://localhost:5173'], credentials: true }));
+app.use(cors({ origin: ['http://localhost:5173' || '*'], credentials: true }));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/chats', chatRoutes);
@@ -32,7 +46,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   pingTimeout: 60000,
-  cors: { origin: "http://localhost:5173", credentials: true },
+  cors: { origin: "http://localhost:5173" || '*', credentials: true },
 });
 
 const onlineUsers = new Map();
